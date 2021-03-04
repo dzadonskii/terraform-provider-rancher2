@@ -220,6 +220,7 @@ The following attributes are exported:
 * `volumes` - (Optional) Comma-separated list of volume IDs or names which should be attached to the server (string)
 * `userdata` - (Optional) Path to file with cloud-init user-data (string)
 * `server_label` - (Optional) key=value pairs of additional metadata to assign to the server (list)
+* `image_id` - (Optional) Hetzner Cloud server image ID (string)
 
 > **Note**: You need to install the Hetzner Docker Machine Driver first as shown as in the [examples section](#using-the-hetzner-node-driver).
 

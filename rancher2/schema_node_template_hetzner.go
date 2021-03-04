@@ -20,6 +20,7 @@ type hetznerConfig struct {
 	UserData          string   `json:"userData,omitempty" yaml:"userData,omitempty"`
 	Volumes           string   `json:"volumes,omitempty" yaml:"volumes,omitempty"`
 	ServerLabel       []string `json:"serverLabel,omitempty" yaml:"serverLabel,omitempty"`
+	ImageID           string   `json:"imageId,omitempty" yaml:"imageId,omitempty"`
 }
 
 //Schemas
@@ -81,6 +82,11 @@ func hetznerConfigFields() map[string]*schema.Schema {
 			Elem: &schema.Schema{
 				Type: schema.TypeString,
 			},
+		},
+		"image_id": {
+			Type:        schema.TypeString,
+			Optional:    true,
+			Description: "Hetzner Cloud server image ID",
 		},
 	}
 

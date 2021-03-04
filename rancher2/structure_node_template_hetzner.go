@@ -37,8 +37,13 @@ func flattenHetznerConfig(in *hetznerConfig) []interface{} {
 	if len(in.Volumes) > 0 {
 		obj["volumes"] = in.Volumes
 	}
+
 	if len(in.ServerLabel) > 0 {
 		obj["server_label"] = toArrayInterface(in.ServerLabel)
+	}
+
+	if len(in.Image) > 0 {
+		obj["image_id"] = in.ImageID
 	}
 
 	return []interface{}{obj}
@@ -87,6 +92,10 @@ func expandHetznercloudConfig(p []interface{}) *hetznerConfig {
 
 	if v, ok := in["server_label"].([]interface{}); ok && len(v) > 0 {
 		obj.ServerLabel = toArrayString(v)
+	}
+
+	if v, ok := in["image_id"].(string); ok && len(v) > 0 {
+		obj.ImageID = v
 	}
 
 	return obj
