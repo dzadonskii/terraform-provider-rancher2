@@ -215,10 +215,11 @@ The following attributes are exported:
 * `image` - (Optional) Hetzner Cloud server image. Default `ubuntu-18.04` (string)
 * `server_location` - (Optional) Hetzner Cloud datacenter. Default `nbg1` (string) 
 * `server_type` - (Optional) Hetzner Cloud server type. Default `cx11` (string)
-* `networks` - (Optional) Comma-separated list of network IDs or names which should be attached to the server private network interface (string)
+* `networks` - (Optional) Comma-separated list of network IDs or names which should be attached to the server private network interface (list)
 * `use_private_networks` - (Optional) Use private network. Default `false` (bool)
 * `volumes` - (Optional) Comma-separated list of volume IDs or names which should be attached to the server (string)
 * `userdata` - (Optional) Path to file with cloud-init user-data (string)
+* `server_label` - (Optional) key=value pairs of additional metadata to assign to the server (list)
 
 > **Note**: You need to install the Hetzner Docker Machine Driver first as shown as in the [examples section](#using-the-hetzner-node-driver).
 

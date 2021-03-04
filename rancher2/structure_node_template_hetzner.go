@@ -25,7 +25,7 @@ func flattenHetznerConfig(in *hetznerConfig) []interface{} {
 	}
 
 	if len(in.Networks) > 0 {
-		obj["networks"] = in.Networks
+		obj["networks"] = toArrayInterface(in.Networks)
 	}
 
 	obj["use_private_network"] = in.UsePrivateNetwork
@@ -36,6 +36,9 @@ func flattenHetznerConfig(in *hetznerConfig) []interface{} {
 
 	if len(in.Volumes) > 0 {
 		obj["volumes"] = in.Volumes
+	}
+	if len(in.ServerLabel) > 0 {
+		obj["server_label"] = toArrayInterface(in.ServerLabel)
 	}
 
 	return []interface{}{obj}
@@ -66,8 +69,8 @@ func expandHetznercloudConfig(p []interface{}) *hetznerConfig {
 		obj.ServerType = v
 	}
 
-	if v, ok := in["networks"].(string); ok && len(v) > 0 {
-		obj.Networks = v
+	if v, ok := in["networks"].([]interface{}); ok && len(v) > 0 {
+		obj.Networks = toArrayString(v)
 	}
 
 	if v, ok := in["use_private_network"].(bool); ok {
@@ -80,6 +83,10 @@ func expandHetznercloudConfig(p []interface{}) *hetznerConfig {
 
 	if v, ok := in["volumes"].(string); ok && len(v) > 0 {
 		obj.Volumes = v
+	}
+
+	if v, ok := in["server_label"].([]interface{}); ok && len(v) > 0 {
+		obj.ServerLabel = toArrayString(v)
 	}
 
 	return obj
